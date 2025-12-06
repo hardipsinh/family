@@ -319,6 +319,10 @@
             <!-- Introductory Message / Inviter's Details (SUG MAHASHAY SHREE SECTION REVISED) -->
             <div class="mb-10 sm:mb-12 text-center text-base sm:text-lg text-gray-700 max-w-4xl mx-auto p-4 sm:p-6 border-l-8 border-secondary/70 bg-white regal-card rounded-2xl gu-text">
                 <p class="font-bold text-secondary mb-4 text-xl border-b-2 border-primary/30 pb-2">સુજ્ઞ મહાશય શ્રી,</p>
+                
+                <!-- Dynamic Recipient Name Injection Point -->
+                <div id="dynamic-recipient-name"></div>
+
                 <div class="text-justify text-sm sm:text-base leading-relaxed">
                     <p class="mb-3">એતાન શ્રી ગામ કાલમેઘડાથી લી. અતિ્ર ગોત્ર ચંદ્રવંશી યદુકુળના ધર્મનિષ્ઠ શ્રી કૃષ્ણ વંશજ ભારાણી જાડેજા શ્રી મહાવીરસિંહજી નટવરસિંહજીના જય માતાજી વાંચશોજી.</p>
                     <p class="mb-3">સહર્ષ ખુશાલી સાથ જણાવવાનું કે અમારા કુળદેવી શ્રી આશાપુરા માતાજીની અસીમ કૃપાથી, પરિવારના પરમ પૂજય પિતાશ્રી સ્વ. નટવરસિંહજી તથા સ્વ. બાશ્રી રાજકુંવરબાના સદેવ આશીર્વાદથી,</p>
@@ -615,7 +619,7 @@
                     વયમાં અમે છીએ નાના પણ પ્રસંગે ચુપ રહીએ શાના? <br/> અમારા ઘરના પ્રસંગે પધારજો ભુલી બધા બહાના... <br/> અમારા કાકા તથા મામાના લગ્નમાં જરૂર પધારજો...
                 </p>
                 <p class="text-xs sm:text-base mt-4 text-gray-600 font-medium gu-text">
-                    - મિતરાજસિંહજી, દિવ્યાંશીબા, ધૈર્યવિજયસિંહજી, ધ્વનીકાબા, જન્મેજયસિંહજી, માનવીરસિંહજી, હિમાદ્રિબા, હર્ષવર્ધનસિંહજી, અગસ્ત્યવિરસિંહજી, શિવાદિત્યસિંહજી, મિતાંશીબા, રૂદ્રદત્તસિંહજી, જયદત્તસિંહજી.
+                    - મિતરાજસિંહજી, દિવ્યાંશીબા, ધૈર્યવિજયસિંહજી, ધ્વનીકાબા, જન્મેજયસિંહજી, માનવીરસિંહજી, હિમાદ્રિબા, હર્ષવર્ધનસિંહજી, અગસ્ત્યવરસિંહજી, શિવાદિત્યસિંહજી, મિતાંશીબા, રૂદ્રદત્તસિંહજી, જયદત્તસિંહજી.
                 </p>
             </div>
 
@@ -729,6 +733,37 @@
         const WEDDING_DATE = new Date(2026, 1, 7, 17, 0, 0).getTime();
 
         /**
+         * Parses a URL query parameter.
+         */
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            // Decode URI component to handle spaces (%20) and Gujarati characters correctly
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        /**
+         * Inserts the dynamic recipient name if available in the URL query.
+         */
+        function insertDynamicRecipientName() {
+            const recipientName = getUrlParameter('name');
+            const nameContainer = document.getElementById('dynamic-recipient-name');
+
+            if (recipientName && nameContainer) {
+                // Display the name prominently with a greeting
+                nameContainer.innerHTML = `
+                    <p class="text-2xl sm:text-3xl font-extrabold text-accent mb-4 gu-text tracking-wide">${recipientName}</p>
+                    <p class="text-lg text-secondary font-semibold mb-6 gu-text border-b border-primary/30 pb-3">આપને સહપરિવાર ભાવભર્યું નિમંત્રણ છે.</p>
+                `;
+            } else {
+                 // If no name is provided, you might want to add a vertical space 
+                 // to prevent layout shift, but for now, we'll leave it empty 
+                 // and the flow will remain compact, which is the default.
+            }
+        }
+
+        /**
          * Updates the countdown timer display.
          */
         function updateCountdown() {
@@ -796,8 +831,11 @@
         document.addEventListener("DOMContentLoaded", function() {
             // 1. Initialize Lucide Icons
             lucide.createIcons();
+            
+            // 2. Insert Dynamic Name (New functionality)
+            insertDynamicRecipientName();
 
-            // 2. Setup Scroll Observer 
+            // 3. Setup Scroll Observer 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {

@@ -228,10 +228,62 @@
             gap: 1.5rem; /* Space between phone/whatsapp pairs */
         }
 
+        /* --- NEW PETAL ANIMATION STYLES --- */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicking through the container */
+            overflow: hidden;
+            z-index: 5; /* Below navbar (z-50) but above content */
+        }
+
+        .petal {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(114, 20, 20, 0.75); /* Deep Crimson Red with slight transparency */
+            border-radius: 50% 50% 10% 80%; /* Irregular shape for a petal look */
+            opacity: 0;
+            /* Initial transform will be set by JS */
+            filter: blur(0.5px); /* Soften the edges */
+        }
+
+        @keyframes fall-and-swing {
+            0% {
+                top: -10%;
+                opacity: 0.5;
+                transform: translateX(0px) rotateZ(0deg);
+            }
+            25% {
+                transform: translateX(20px) rotateZ(90deg);
+            }
+            50% {
+                transform: translateX(-10px) rotateZ(180deg);
+            }
+            75% {
+                transform: translateX(30px) rotateZ(270deg);
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+                transform: translateX(0px) rotateZ(360deg);
+            }
+        }
+        
+        .petal-animate {
+            animation: fall-and-swing var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
 
     </style>
 </head>
 <body>
+
+    <!-- NEW PETAL CONTAINER: Fixed background layer -->
+    <div id="petal-container"></div>
 
     <!-- Navigation Bar -->
     <nav id="nav-bar" class="sticky top-0 z-50 bg-cream shadow-xl transition-all duration-300 border-b-2 border-primary/50">
@@ -757,9 +809,7 @@
                     <p class="text-lg text-secondary font-semibold mb-6 gu-text border-b border-primary/30 pb-3">આપને સહપરિવાર ભાવભર્યું નિમંત્રણ છે.</p>
                 `;
             } else {
-                 // If no name is provided, you might want to add a vertical space 
-                 // to prevent layout shift, but for now, we'll leave it empty 
-                 // and the flow will remain compact, which is the default.
+                 // Fallback to maintain compact layout if no name provided.
             }
         }
 
@@ -817,6 +867,47 @@
         const interval = setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call to display immediately
 
+
+        /**
+         * Generates and animates falling petals.
+         */
+        function createPetals() {
+            const container = document.getElementById('petal-container');
+            const numberOfPetals = 20; // Number of petals for a subtle background effect
+
+            for (let i = 0; i < numberOfPetals; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal petal-animate';
+
+                // Randomize starting X position (0% to 100% of viewport width)
+                const startX = Math.random() * 100;
+                petal.style.left = `${startX}vw`;
+                
+                // Randomize size (8px to 14px)
+                const size = 8 + Math.random() * 6;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                
+                // Randomize duration (5s to 15s) for speed
+                const duration = 5 + Math.random() * 10;
+                petal.style.setProperty('--duration', `${duration}s`);
+                
+                // Randomize delay (0s to -15s) to start the animation mid-way/staggered
+                const delay = -Math.random() * 15;
+                petal.style.setProperty('--delay', `${delay}s`);
+
+                // Initial rotation for varied start
+                const initialRotation = Math.random() * 360;
+                petal.style.transform = `rotate(${initialRotation}deg)`;
+
+                // Random opacity
+                petal.style.opacity = 0.3 + Math.random() * 0.4; // 0.3 to 0.7
+                
+                container.appendChild(petal);
+            }
+        }
+
+
         /**
          * Toggles the mobile menu visibility.
          */
@@ -835,7 +926,10 @@
             // 2. Insert Dynamic Name (New functionality)
             insertDynamicRecipientName();
 
-            // 3. Setup Scroll Observer 
+            // 3. Start Petal Animation
+            createPetals();
+
+            // 4. Setup Scroll Observer 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {

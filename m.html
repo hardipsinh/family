@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>મોડર્ન પ્રોફેશનલ લિંક જનરેટર</title>
+    <!-- Tailwind CSS લોડ કરો -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* કસ્ટમ સ્ટાઇલ: સોફ્ટ ગ્રેડિયન્ટ બેકગ્રાઉન્ડ */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* સોફ્ટ બેકગ્રાઉન્ડ ગ્રેડિયન્ટ ઉમેર્યો */
+            background: linear-gradient(135deg, #eef2ff, #f3e8ff); 
+        }
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); /* ઊંડો શેડો */
+            border: 1px solid #e0e7ff;
+            /* કાર્ડને બેકગ્રાઉન્ડમાંથી અલગ પાડવા માટે નાજુક રિંગ */
+            outline: 4px solid #eef2ff;
+        }
+        .button-style {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        /* Indigo બટન સ્ટાઇલ */
+        .copy-btn {
+            background-color: #4f46e5; /* Indigo-600 */
+        }
+        .copy-btn:hover {
+            background-color: #4338ca; /* Indigo-700 */
+            /* હોવર પર ગ્લો ઇફેક્ટ */
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); 
+        }
+        /* WhatsApp બટન સ્ટાઇલ */
+        .whatsapp-btn {
+            background-color: #10b981; /* Emerald-500 (ગ્રીન) */
+        }
+        .whatsapp-btn:hover {
+            background-color: #059669; /* Emerald-600 */
+            /* હોવર પર ગ્લો ઇફેક્ટ */
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+        .button-style:active {
+            transform: scale(0.98);
+        }
+        .disabled-btn {
+            background-color: #9ca3af !important; /* Gray-400 */
+            cursor: not-allowed;
+            box-shadow: none !important;
+        }
+        /* કસ્ટમ મેસેજ બોક્સ સ્ટાઇલિંગ */
+        .message-box {
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* જનરેટ કરેલ લિંક ડિસ્પ્લે અને ચેતવણી સ્ટાઇલ */
+        #generated-link-display {
+            word-break: break-all;
+            background-color: #fef2f2; 
+            border-left: 5px solid #dc2626; /* બોર્ડર જાડી કરી */
+            min-height: 52px; /* ઊંચાઈ વધારી */
+            display: flex;
+            align-items: center;
+            font-family: monospace;
+            padding: 14px;
+        }
+    </style>
+</head>
+<body class="p-4 flex items-center justify-center min-h-screen">
+
+    <div class="card p-6 sm:p-10 rounded-2xl w-full max-w-lg">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-black text-indigo-700">
+                વ્યક્તિગત લિંક યુટિલિટી
+            </h1>
+            <p class="text-gray-500 mt-2 text-lg">
+                નામ આધારિત લિંક બનાવો અને ઝડપથી શેર કરો.
+            </p>
+        </header>
+
+        <!-- ઇનપુટ ફીલ્ડ્સ -->
+        <div class="space-y-6 mb-8">
+            <div>
+                <label for="nameInput" class="block text-sm font-bold text-gray-700 mb-2">
+                    નામ પેરામીટર (દા.ત., હરદીપસિંહ જાડેજા)
+                </label>
+                <input type="text" id="nameInput" placeholder="કોઈપણ ભાષામાં નામ દાખલ કરો"
+                       class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 text-base shadow-lg">
+            </div>
+            
+            <div>
+                <label for="mobileInput" class="block text-sm font-bold text-gray-700 mb-2">
+                    વોટ્સએપ નંબર (ડાયરેક્ટ શેરિંગ માટે)
+                </label>
+                <input type="tel" id="mobileInput" placeholder="દા.ત., 919876543210 (કંટ્રી કોડ સાથે)"
+                       class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-green-600 focus:border-green-600 transition duration-150 text-base shadow-lg">
+                <p class="text-xs text-gray-500 mt-2">
+                    વોટ્સએપ બટન ફક્ત નંબર દાખલ કર્યા પછી જ સક્ષમ થશે.
+                </p>
+            </div>
+        </div>
+
+        <!-- બટન -->
+        <div class="space-y-4">
+            <button id="copyButton" onclick="generateLinkAndCopy()"
+                    class="button-style copy-btn w-full text-white font-extrabold py-3.5 rounded-xl shadow-xl flex items-center justify-center text-lg">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m-3 7H4a2 2 0 01-2-2V5a2 2 0 012-2h5m0 16L9 14m0 0l3 3m-3-3l3-3"></path></svg>
+                લિંક કોપી કરો
+            </button>
+
+            <button id="whatsappButton" onclick="generateAndOpenWhatsApp()"
+                    class="button-style whatsapp-btn w-full text-white font-extrabold py-3.5 rounded-xl shadow-xl flex items-center justify-center text-lg disabled:opacity-50" disabled>
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 3.189 1.583 6.007 4.027 7.746l-.508 1.488 1.534-.403A9.991 9.991 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm3.385 12.332c-.073.186-.282.262-.48.25-.198-.011-.476-.088-.865-.246-.575-.236-1.503-.664-2.585-1.533-1.082-.87-1.996-2.115-2.228-2.593-.07-.15-.09-.283-.09-.415 0-.012 0-.026.002-.04.015-.088.08-.224.167-.384.066-.123.13-.23.197-.306.07-.077.16-.145.26-.196.1-.05.21-.075.322-.075.053 0 .105.006.155.018.106.024.19.043.255.195.07.152.247.6.284.707.037.108.064.23.01.353-.053.123-.357.43-.377.45-.02.02-.043.045-.067.07-.078.077-.16.166-.23.262-.11.16-.21.32-.284.47-.075.15-.12.308-.13.465-.01.157.02.32.09.477.073.156.19.33.34.52.148.19.317.41.52.64.4.444.898.85 1.442 1.218.544.368 1.15.656 1.815.864.665.208 1.348.337 2.05.337.387 0 .753-.083 1.09-.247.337-.164.582-.395.733-.58.15-.187.23-.42.27-.674.04-.253-.006-.506-.135-.747-.13-.242-.315-.47-.535-.68-.22-.21-.497-.43-.73-.518-.232-.088-.475-.133-.73-.133.013-.03.023-.06.035-.09.02-.06.036-.12.05-.18.014-.06.024-.12.032-.18.008-.06.012-.12.012-.18v-.004z"></path></svg>
+                વોટ્સએપ દ્વારા મોકલો
+            </button>
+        </div>
+
+        <!-- પરિણામ ડિસ્પ્લે અને ચેતવણી -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold text-gray-800 mb-2">જનરેટ કરેલ લિંક પ્રીવ્યૂ:</h3>
+            <div id="generated-link-display" class="rounded-xl text-base text-gray-800 shadow-inner">
+                ઇનપુટની રાહ જોવાય છે...
+            </div>
+            <p class="text-xs text-red-700 mt-2 p-3 bg-red-100 rounded-lg border border-red-300">
+                ⚠️ **કસ્ટમ એન્કોડિંગ ચેતવણી:** અહીં ફક્ત સ્પેસ (Space) ને `%20` થી બદલવામાં આવી છે. ગુજરાતી/હિન્દી અક્ષરો સીધા URL માં ઉપયોગમાં લેવાય છે, જે વેબ સ્ટાન્ડર્ડ નથી અને તેનાથી લિંક તૂટવાનું જોખમ રહે છે.
+            </p>
+        </div>
+
+        <!-- પ્રતિસાદ માટે મેસેજ બોક્સ -->
+        <div id="messageBox" class="message-box fixed top-4 right-4 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-xl opacity-0 z-50">
+            લિંક સફળતાપૂર્વક કોપી થઈ ગઈ!
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = "https://hardipsinh.github.io/family/"; 
+        
+        const nameInput = document.getElementById('nameInput');
+        const mobileInput = document.getElementById('mobileInput');
+        const generatedLinkDisplay = document.getElementById('generated-link-display');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const messageBox = document.getElementById('messageBox');
+
+        /**
+         * કસ્ટમ, મિનિમલ એન્કોડિંગ (ફક્ત સ્પેસને %20 થી બદલો) નો ઉપયોગ કરીને અંતિમ URL જનરેટ કરે છે.
+         * @returns {string | null} જનરેટ થયેલ URL અથવા જો નામ ખાલી હોય તો null.
+         */
+        function generateLink() {
+            const name = nameInput.value.trim();
+            if (!name) {
+                return null;
+            }
+            
+            // કસ્ટમ લોજિક: ફક્ત સ્પેસને %20 થી બદલો.
+            const customEncodedName = name.replace(/ /g, '%20'); 
+            
+            return `${BASE_URL}?name=${customEncodedName}`;
+        }
+
+        // લિંક પ્રીવ્યૂ અપડેટ કરવા અને બટન સ્ટેટ મેનેજ કરવા માટેનું ફંક્શન
+        function updatePreviewAndState() {
+            const name = nameInput.value.trim();
+            const mobile = mobileInput.value.trim();
+            const finalUrl = generateLink();
+
+            if (finalUrl) {
+                generatedLinkDisplay.textContent = finalUrl;
+            } else {
+                generatedLinkDisplay.textContent = "ઇનપુટની રાહ જોવાય છે...";
+            }
+
+            // વોટ્સએપ બટનને સક્ષમ કરો જો નામ અને મોબાઇલ નંબર બંને હાજર હોય
+            const isReadyForWhatsapp = name && mobile;
+            whatsappButton.disabled = !isReadyForWhatsapp;
+
+            // બટનના રંગ અને શેડોને અપડેટ કરો
+            if (!isReadyForWhatsapp) {
+                 whatsappButton.classList.add('disabled-btn');
+            } else {
+                 whatsappButton.classList.remove('disabled-btn');
+            }
+        }
+
+        // રિયલ-ટાઇમ અપડેટ્સ માટે ઇવેન્ટ લિસનર્સ ઉમેરો
+        nameInput.addEventListener('input', updatePreviewAndState);
+        mobileInput.addEventListener('input', updatePreviewAndState);
+
+        // લોડ પર સ્ટેટ પ્રારંભ કરો
+        updatePreviewAndState();
+
+        // પ્રતિસાદ સંદેશાઓ પ્રદર્શિત કરવા માટે યુટિલિટી ફંક્શન
+        function showMessage(text, isError = false) {
+            messageBox.textContent = text;
+            messageBox.style.backgroundColor = isError ? '#dc2626' : '#1f2937'; 
+            messageBox.style.opacity = '1';
+
+            setTimeout(() => {
+                messageBox.style.opacity = '0';
+            }, 3000);
+        }
+
+        // ફંક્શન 1: લિંક જનરેટ કરો અને ક્લિપબોર્ડ પર કોપી કરો
+        function generateLinkAndCopy() {
+            const finalUrl = generateLink();
+
+            if (!finalUrl) {
+                showMessage("લિંક જનરેટ કરવા માટે કૃપા કરીને નામ દાખલ કરો.", true);
+                return;
+            }
+
+            // ક્લિપબોર્ડ પર કોપી કરવા માટે execCommand નો ઉપયોગ કરો
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = finalUrl;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showMessage("લિંક સફળતાપૂર્વક કોપી થઈ ગઈ!");
+            } catch (err) {
+                // જો execCommand નિષ્ફળ જાય, તો આધુનિક API નો ઉપયોગ કરો (જો ઉપલબ્ધ હોય તો)
+                navigator.clipboard.writeText(finalUrl).then(() => {
+                    showMessage("લિંક સફળતાપૂર્વક કોપી થઈ ગઈ!");
+                }).catch(err => {
+                    console.error('Clipboard copy failed:', err);
+                    showMessage("ભૂલ: ક્લિપબોર્ડ પર કોપી થઈ શકી નહીં. કૃપા કરીને મેન્યુઅલી કોપી કરો.", true);
+                });
+            }
+            document.body.removeChild(tempTextArea);
+        }
+
+        // ફંક્શન 2: લિંક જનરેટ કરો અને વોટ્સએપ ચેટ ખોલો
+        function generateAndOpenWhatsApp() {
+            const finalUrl = generateLink();
+            const mobile = mobileInput.value.trim();
+
+            if (!finalUrl || !mobile) {
+                showMessage("કૃપા કરીને નામ અને મોબાઇલ નંબર બંને દાખલ કરો.", true);
+                return;
+            }
+            
+            // વોટ્સએપ મેસેજનું લખાણ
+            const messageText = `અહીં તમારી વ્યક્તિગત લિંક છે: ${finalUrl}`;
+
+            // વોટ્સએપ API માટે મેસેજને સંપૂર્ણપણે એન્કોડ કરવો જરૂરી છે.
+            const whatsappMessage = encodeURIComponent(messageText);
+
+            // વોટ્સએપ URL કન્સ્ટ્રક્ટ કરો
+            const whatsappUrl = `https://wa.me/${mobile}?text=${whatsappMessage}`;
+
+            // લિંકને નવી ટેબ/વિન્ડોમાં ખોલો
+            window.open(whatsappUrl, '_blank');
+            showMessage("વોટ્સએપ ચેટ ખોલાઈ રહી છે...");
+        }
+
+    </script>
+</body>
+</html>
+

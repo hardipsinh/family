@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>શુભ વિવાહ - જાડેજા પરિવાર</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Font Awesome for WhatsApp Icon (Using for the WhatsApp icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script>
+        // Tailwind Configuration for Regal colors and font
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#C8A461', // Regal Gold/Saffron
+                        'secondary': '#721414', // Deep Crimson Red/Maroon
+                        'cream': '#FFFBF0', // Ivory/Soft Cream Background
+                        'accent': '#9A6324', // Bronze accent
+                    },
+                    fontFamily: {
+                        // Use Inter for Latin characters and Noto Sans Gujarati for Gujarati text
+                        sans: ['Inter', 'Noto Sans Gujarati', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* General Styling for a Rich, Modern Look */
+        body {
+            background-color: #FFFBF0; /* Ivory Background */
+            font-family: 'Inter', 'Noto Sans Gujarati', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        /* Mobile-First Section Padding Optimization */
+        .section {
+            padding: 3rem 1rem; /* Reduced vertical padding for mobile, consistent horizontal padding */
+            scroll-margin-top: 4rem;
+        }
+        @media (min-width: 640px) { /* sm */
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+        @media (min-width: 1024px) { /* lg */
+            .section {
+                padding: 5rem;
+            }
+        }
+        
+        /* Custom Professional Card Style */
+        .regal-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 15px 30px -10px rgba(114, 20, 20, 0.2); /* Enhanced shadow */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            border: 1px solid rgba(200, 164, 97, 0.4); /* Subtle gold line */
+        }
+        .regal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(114, 20, 20, 0.3);
+        }
+
+        /* --- 1. Custom Animation Keyframes --- */
+        
+        /* Fade-in-up for scroll reveal - TRANSITION TIME REDUCED TO 0.8S FOR FASTER LOAD */
+        .animate-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+        }
+        .animate-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sparkle Effect for Main Heading */
+        @keyframes sparkle {
+            0%, 100% { color: #721414; }
+            50% { color: #C8A461; text-shadow: 0 0 10px rgba(200, 164, 97, 0.8), 0 0 20px rgba(200, 164, 97, 0.5); }
+        }
+        .sparkle-text {
+            animation: sparkle 4s infinite ease-in-out;
+        }
+
+        /* --- 2. Section Styling --- */
+        
+        /* Hero Section Styling (More distinguished) */
+        .hero-bg {
+            background-color: #FFFBF0;
+            background-image: radial-gradient(circle at 50% 50%, rgba(200, 164, 97, 0.1) 0%, transparent 80%);
+            position: relative;
+        }
+
+        /* Countdown specific styling - optimized for mobile width */
+        .countdown-item {
+            background: linear-gradient(145deg, #721414, #5a1010); 
+            color: #FFFBF0;
+            padding: 0.8rem 0.5rem; /* Reduced padding */
+            border-radius: 0.75rem;
+            min-width: 60px; /* Reduced min-width */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        .countdown-item:hover {
+             background: linear-gradient(145deg, #9A6324, #7f511e);
+        }
+
+        /* Event Details Styling */
+        .event-detail-label {
+            font-weight: 700; 
+            color: #721414; 
+            min-width: 120px; /* Ensures alignment on smaller screens */
+            display: block;
+            flex-basis: auto;
+            flex-shrink: 0; /* Prevents shrinking on mobile */
+        }
+        .event-detail-value {
+            font-weight: 500; 
+            color: #333;
+            flex-grow: 1;
+        }
+        
+        /* Separator style */
+        .separator {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #C8A461, transparent);
+            margin: 2rem auto;
+            opacity: 0.7;
+        }
+
+        /* Event Card with distinct background */
+        .event-card-bg {
+            background-color: #F7EFE5;
+            padding: 1rem; /* Reduced padding */
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-left: 5px solid #C8A461;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Mitho Tahuko Specific Style */
+        .mitho-tahuko {
+            background: #F7EFE5;
+            border: 2px dashed #C8A461;
+            padding: 1.5rem; /* Reduced padding for mobile */
+            border-radius: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-style: italic;
+            position: relative;
+        }
+        .mitho-tahuko::before {
+            content: "🙏";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: #FFFBF0;
+            padding: 0 0.5rem;
+            border-radius: 50%;
+        }
+
+        /* Single Column List Style (Used for Blessings, Inviters, Well-wishers) */
+        .single-column-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem; /* Small gap between names */
+            text-align: left; /* Align text to the left for better readability of the list */
+            font-size: 0.875rem; /* text-sm */
+        }
+        
+        /* Center the single-column list within its container */
+        .centered-single-column {
+             max-width: 300px; /* Limit width for readability */
+             margin-left: auto;
+             margin-right: auto;
+        }
+
+        /* Highlight Block for Major Events */
+        .major-highlight {
+            background: linear-gradient(135deg, #FFEBD6, #FFFBF0);
+            border: 3px double #C8A461;
+            box-shadow: 0 5px 15px rgba(114, 20, 20, 0.1);
+            transition: all 0.3s ease;
+        }
+        .major-highlight:hover {
+             border-color: #721414;
+             background: #FFF8E1;
+             transform: scale(1.02);
+        }
+        
+        /* Contact Link Styling (Phone & WhatsApp) */
+        .contact-link {
+            color: #721414; /* Default text color */
+            transition: color 0.2s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-link:hover {
+            color: #9A6324; /* Change on hover */
+            text-decoration: underline;
+        }
+        .whatsapp-icon {
+            color: #25D366; /* WhatsApp Green */
+        }
+
+        /* NEW STYLE: Center alignment for contact numbers */
+        .contact-center-align {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            text-align: center; /* Center text within the container */
+            gap: 0.75rem; /* Space between rows */
+        }
+        .contact-row {
+            display: flex;
+            justify-content: center; /* Center the links within the row */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 1.5rem; /* Space between phone/whatsapp pairs */
+        }
+
+        /* --- NEW PETAL ANIMATION STYLES --- */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicking through the container */
+            overflow: hidden;
+            z-index: 5; /* Below navbar (z-50) but above content */
+        }
+
+        .petal {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(114, 20, 20, 0.75); /* Deep Crimson Red with slight transparency */
+            border-radius: 50% 50% 10% 80%; /* Irregular shape for a petal look */
+            opacity: 0;
+            /* Initial transform will be set by JS */
+            filter: blur(0.5px); /* Soften the edges */
+        }
+
+        @keyframes fall-and-swing {
+            0% {
+                top: -10%;
+                opacity: 0.5;
+                transform: translateX(0px) rotateZ(0deg);
+            }
+            25% {
+                transform: translateX(20px) rotateZ(90deg);
+            }
+            50% {
+                transform: translateX(-10px) rotateZ(180deg);
+            }
+            75% {
+                transform: translateX(30px) rotateZ(270deg);
+            }
+            100% {
+                top: 110%;
+                opacity: 0;
+                transform: translateX(0px) rotateZ(360deg);
+            }
+        }
+        
+        .petal-animate {
+            animation: fall-and-swing var(--duration) linear infinite;
+            animation-delay: var(--delay);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NEW PETAL CONTAINER: Fixed background layer -->
+    <div id="petal-container"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="nav-bar" class="sticky top-0 z-50 bg-cream shadow-xl transition-all duration-300 border-b-2 border-primary/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Title -->
+                <div class="flex-shrink-0">
+                    <span class="text-xl sm:text-2xl font-extrabold text-secondary gu-text tracking-widest">॥ શુભ વિવાહ જાડેજા પરિવાર ॥</span>
+                </div>
+                
+                <!-- Desktop Menu Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">હોમ</a>
+                    <a href="#details" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">લગ્ન વિગતો</a>
+                    <a href="#blessings_inviters" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">આશિષ / નિમંત્રક</a>
+                    <a href="#vel_prasthan" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">વેલ પ્રસ્થાન</a>
+                    <a href="#schedule" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">પ્રસંગો</a>
+                    <a href="#family" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">પરિવારજનો</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium gu-text transition duration-200">સ્થળ</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-secondary focus:outline-none" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center bg-cream shadow-inner border-t border-primary/30">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">હોમ</a>
+                <a href="#details" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">લગ્ન વિગતો</a>
+                <a href="#blessings_inviters" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">આશિષ / નિમંત્રક</a>
+                <a href="#vel_prasthan" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">વેલ પ્રસ્થાન</a>
+                <a href="#schedule" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">પ્રસંગો</a>
+                <a href="#family" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">પરિવારજનો</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 gu-text" onclick="toggleMenu()">સ્થળ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Home / Hero Section -->
+    <section id="home" class="section hero-bg min-h-screen flex items-center justify-center text-center p-4">
+        <div class="max-w-4xl w-full p-6 sm:p-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl animate-scroll relative z-10 border-4 border-primary/80">
+            <!-- Invocation and Motto -->
+            <p class="text-lg sm:text-xl font-bold text-secondary mb-2 gu-text">॥ શ્રી ગણેશાય નમઃ ॥</p>
+            <p class="text-sm text-gray-600 italic mb-4 gu-text">રાખી તુજમાં વિશ્વાસ શુભ કાર્ય આરંભુ છું!| પાર પાડજો માં કુળદેવી એવું તમને પ્રાથું છું ॥</p>
+            
+            <!-- Main Heading - UPDATED with JADEJA PARIVAR -->
+            <h1 class="text-4xl sm:text-7xl font-extrabold text-secondary mb-3 gu-text sparkle-text tracking-wider leading-tight">શુભ વિવાહ નિમંત્રણ</h1>
+            <p class="text-xl sm:text-3xl font-extrabold text-primary mb-6 gu-text">જાડેજા પરિવાર</p>
+            
+            <!-- Couple 1 Details - UPDATED: કુંવરશ્રી ચિ. -->
+            <p class="text-xl sm:text-4xl text-primary font-bold mb-3 gu-text tracking-wide">
+                કુંવરશ્રી ચિ. યોગેન્દ્રસિંહજી 
+                <i data-lucide="sparkles" class="inline-block mx-1 text-secondary w-5 h-5 sm:w-6 sm:h-6 heart-beat"></i> 
+                સૌ. કાં. ચિ. અનિતાબા
+            </p>
+            
+            <p class="text-lg sm:text-3xl text-accent font-extrabold mb-6 gu-text tracking-tighter">|| અને ||</p>
+
+            <!-- Couple 2 Details - UPDATED: કુંવરશ્રી ચિ. -->
+            <p class="text-xl sm:text-4xl text-primary font-bold mb-6 gu-text tracking-wide">
+                કુંવરશ્રી ચિ. સિધ્ધરાજસિંહજી
+                <i data-lucide="sparkles" class="inline-block mx-1 text-secondary w-5 h-5 sm:w-6 sm:h-6 heart-beat"></i> 
+                સૌ. કાં. ચિ. કોમલબા
+            </p>
+            
+            <!-- Countdown Timer -->
+            <div id="countdown-container" class="flex justify-center space-x-3 sm:space-x-5 my-8">
+                <!-- Countdown elements are injected here by JavaScript -->
+            </div>
+            
+            <!-- Invitation Note -->
+            <p class="text-base sm:text-lg text-gray-700 mt-6 gu-text font-medium border-t pt-4 border-primary/30">આ શુભ પ્રસંગે આપ સહકુટુંબ સહિત પધારી શોભામાં અભિવૃધિ્ધ કરશોજી.</p>
+        </div>
+    </section>
+
+    <!-- 2. Wedding Details and Inviter's Introduction Section -->
+    <section id="details" class="section bg-cream text-center p-4">
+        <div class="max-w-6xl mx-auto animate-scroll">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-8 sm:mb-12 text-center gu-text border-b-4 border-primary/50 pb-2 inline-block">લગ્ન વિગતો અને પરિચય</h2>
+
+            <!-- Introductory Message / Inviter's Details (SUG MAHASHAY SHREE SECTION REVISED) -->
+            <div class="mb-10 sm:mb-12 text-center text-base sm:text-lg text-gray-700 max-w-4xl mx-auto p-4 sm:p-6 border-l-8 border-secondary/70 bg-white regal-card rounded-2xl gu-text">
+                <p class="font-bold text-secondary mb-4 text-xl border-b-2 border-primary/30 pb-2">સુજ્ઞ મહાશય શ્રી,</p>
+                
+                <!-- Dynamic Recipient Name Injection Point -->
+                <div id="dynamic-recipient-name"></div>
+
+                <div class="text-justify text-sm sm:text-base leading-relaxed">
+                    <p class="mb-3">એતાન શ્રી ગામ કાલમેઘડાથી લી. અત્રિ ગોત્ર ચંદ્રવંશી યદુકુળના ધર્મનિષ્ઠ શ્રી કૃષ્ણ વંશજ ભારાણી જાડેજા શ્રી મહાવીરસિંહજી નટવરસિંહજીના જય માતાજી વાંચશોજી.</p>
+                    <p class="mb-3">સહર્ષ ખુશાલી સાથ જણાવવાનું કે અમારા કુળદેવી શ્રી આશાપુરા માતાજીની અસીમ કૃપાથી, પરિવારના પરમ પૂજય પિતાશ્રી સ્વ. નટવરસિંહજી તથા સ્વ. બાશ્રી રાજકુંવરબાના સદેવ આશીર્વાદથી,</p>
+                    <p class="font-semibold text-secondary">અમારા નાનાભાઇ શ્રી હારિતસિંહજી નટવરસિંહજી જાડેજાના સુપુત્રો કુંવરશ્રીઓના શુભ વિવાહ યોજાયેલ છે. આ પ્રસંગે આપની હાજરી અમ માટે આશિર્વાદ સમાન રહેશે.</p>
+                </div>
+            </div>
+            
+            <!-- Wedding Details Cards - Responsive Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Card 1: Yogendrasinhji & Anitaba - UPDATED: કુંવરશ્રી ચિ. -->
+                <div class="p-6 sm:p-8 regal-card border-l-8 border-primary animate-scroll delay-[100ms]">
+                    <i data-lucide="heart-handshake" class="text-secondary w-7 h-7 sm:w-8 sm:h-8 mb-4 mx-auto"></i> 
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 gu-text">કુંવરશ્રી ચિ. યોગેન્દ્રસિંહજી (વરરાજા)</h3>
+                    <p class="text-lg sm:text-xl font-semibold text-primary mb-6 gu-text">સૌ. કાં. ચિ. અનિતાબા (વધુ)</p>
+                    <div class="text-left space-y-3 text-sm sm:text-base">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                            <span class="event-detail-label gu-text">કુંવરશ્રી વસુધા:</span>
+                            <span class="event-detail-value gu-text ml-0 sm:ml-2 font-medium">કાલમેઘડા, જામનગર (જાડેજા પરિવાર)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                            <span class="event-detail-label gu-text">કુંવરીબા વસુધા:</span>
+                            <span class="event-detail-value gu-text ml-0 sm:ml-2 font-medium">હાથસણી નિવાસી શ્રી ધર્મેન્દ્રસિંહજી ચંદ્રસિંહજી સરવૈયા ના કુંવરીબા</span>
+                        </div>
+                        <div class="flex items-center pt-4 text-base font-semibold border-t border-primary/20 mt-4">
+                            <i data-lucide="calendar" class="w-5 h-5 mr-3 text-secondary"></i>
+                            <span class="gu-text text-secondary">મુખ્ય લગ્ન તારીખ: ૦૭-૦૨-૨૦૨૬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Siddhrajshinhji & Komalba - UPDATED: કુંવરશ્રી ચિ. -->
+                <div class="p-6 sm:p-8 regal-card border-l-8 border-primary animate-scroll delay-[150ms]">
+                    <i data-lucide="wedding-ring" class="text-secondary w-7 h-7 sm:w-8 sm:h-8 mb-4 mx-auto"></i>
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 gu-text">કુંવરશ્રી ચિ. સિધ્ધરાજસિંહજી (વરરાજા)</h3>
+                    <p class="text-lg sm:text-xl font-semibold text-primary mb-6 gu-text">સૌ. કાં. ચિ. કોમલબા (વધુ)</p>
+                    <div class="text-left space-y-3 text-sm sm:text-base">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                            <span class="event-detail-label gu-text">કુંવરશ્રી વસુધા:</span>
+                            <span class="event-detail-value gu-text ml-0 sm:ml-2 font-medium">કાલમેઘડા, જામનગર (જાડેજા પરિવાર)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                            <span class="event-detail-label gu-text">કુંવરીબા વસુધા:</span>
+                            <span class="event-detail-value gu-text ml-0 sm:ml-2 font-medium">ખારડી નિવાસી શ્રી વિરમદેવસિંહજી બટુકસિંહજી ગોહિલ ના કુંવરીબા</span>
+                        </div>
+                        <div class="flex items-center pt-4 text-base font-semibold border-t border-primary/20 mt-4">
+                            <i data-lucide="calendar" class="w-5 h-5 mr-3 text-secondary"></i>
+                            <span class="gu-text text-secondary">મુખ્ય લગ્ન તારીખ: ૦૮-૦૨-૨૦૨૬</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Divine Blessings and Inviters Section (દિવ્ય આશિષ અને નિમંત્રક) -->
+    <section id="blessings_inviters" class="section bg-white p-4">
+        <div class="max-w-6xl mx-auto animate-scroll delay-[200ms]">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-8 sm:mb-12 text-center gu-text border-b-4 border-primary/50 pb-2 inline-block">દિવ્ય આશિષ અને નિમંત્રક</h2>
+
+            <!-- Divine Blessings (દિવ્ય આશિષ) -->
+            <div class="mt-4 p-6 sm:p-8 bg-cream/70 rounded-xl shadow-xl border-t-4 border-secondary/70 animate-scroll delay-[250ms]">
+                <h3 class="text-2xl sm:text-3xl font-bold text-secondary mb-4 gu-text border-b-2 border-primary/50 pb-2 inline-block">દિવ્ય આશિષ (પરલોક નિવાસી)</h3>
+                <!-- Simple responsive list layout - NOW A SINGLE COLUMN -->
+                <div class="centered-single-column single-column-list text-gray-700 text-sm sm:text-base pt-4">
+                    <p class="font-medium">સ્વ. અગરસંગજી બાલુભા જાડેજા</p>
+                    <p class="font-medium">સ્વ. જીવુભા બાલુભા જાડેજા</p>
+                    <p class="font-medium">સ્વ. નટવરસિંહજી અગરસંગજી જાડેજા</p>
+                    <p class="font-medium">સ્વ. દિલુભા અગરસંગજી જાડેજા</p>
+                    <p class="font-medium">સ્વ. કિરતસિંહજી અગરસંગજી જાડેજા</p>
+                    <p class="font-medium">સ્વ. માધવસિંહજી જીવુભા જાડેજા</p>
+                    <p class="font-medium">સ્વ. સહદેવસિંહજી દિલુભા જાડેજા</p>
+                </div>
+            </div>
+
+            <!-- Separator -->
+            <div class="separator mx-auto w-full md:w-1/2 my-10 animate-scroll delay-[300ms]"></div>
+            
+            <!-- List of Inviters/Well-wishers (લિ. સ્નેન્નાધિન & દર્શનાભિલાષી) - Single Column Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 animate-scroll delay-[350ms]">
+                
+                <!-- 1. L. Snehnnadhin (મુખ્ય નિમંત્રક) -->
+                <div class="p-6 regal-card border-l-4 border-secondary">
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 sm:mb-6 text-center gu-text border-b-2 border-primary/50 pb-2 inline-block">લિ. સ્નેન્નાધિન (મુખ્ય નિમંત્રક)</h3>
+                    <!-- All names are now text-gray-800 for consistent color -->
+                    <div class="single-column-list text-gray-800 font-medium pt-4 centered-single-column">
+                        <!-- Primary Inviter Names in a single column -->
+                        <p class="font-medium">શ્રી ખુમાનસિંહજી જીવુભા જાડેજા</p>
+                        <p class="font-medium">શ્રી મહાવીરસિંહજી નટવરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હરિચંદ્રસિંહજી દિલુભા જાડેજા</p>
+                        <p class="font-medium">શ્રી દશરથસિંહજી નટવરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હારિતસિંહજી નટવરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી કૃષ્ણસિંહજી માધવસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી મહેન્દ્રસિંહજી નટવરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હિતેન્દ્રસિંહજી માધવસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી અશોકસિંહજી માધવસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી મહેન્દ્રસિંહજી ખુમાનસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી શિવભદ્રસિંહજી ખુમાનસિંહજી જાડેજા</p>
+                    </div>
+                </div>
+
+                <!-- 2. Darshanabhilashi (દર્શનાભિલાષી) - Single Column Layout -->
+                <div class="p-6 regal-card border-l-4 border-primary">
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 sm:mb-6 text-center gu-text border-b-2 border-primary/50 pb-2 inline-block">દર્શનાભિલાષી (શુભેચ્છકો)</h3>
+                    <div class="single-column-list text-gray-700 font-medium pt-4 centered-single-column">
+                        <!-- UPDATED LIST -->
+                        <p class="font-medium">શ્રી કુલદિપસિંહજી મહાવીરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી ચંદ્રદિપસિંહજી મહાવીરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હરદિપસિંહજી મહાવીરસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી શકિ્તરાજસિંહજી દશરથસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી યુવરાજસિંહજી દશરથસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી સત્યપાલસિંહજી હરિચંદ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી દક્ષરાજસિંહજી મહેન્દ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હર્ષરાજસિંહજી મહેન્દ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી દક્ષરાજસિંહજી હિતેન્દ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી અભિજીતસિંહજી કૃષ્ણસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી ભવદિપસિંહજી અશોકસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી પુષ્પરાજસિંહજી સહદેવસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી જયવીરસિંહજી મહેન્દ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી હર્ષદિપસિંહજી અશોકસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી સુર્યદિપસિંહજી શિવભદ્રસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી ધૈર્યવિજયસિંહજી કુલદિપસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી અગસ્ત્યવીરસિંહજી હરદિપસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી રૂદ્રદત્તસિંહજી શકિ્તરાજસિંહજી જાડેજા</p>
+                        <p class="font-medium">શ્રી જયદત્તસિંહજી ચંદ્રદિપસિંહજી જાડેજા</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. New Section: Vel Prasthan (વેલ પ્રસ્થાન) - UPDATED WITH BOTH NAMES -->
+    <section id="vel_prasthan" class="section bg-cream p-4">
+        <div class="max-w-4xl mx-auto animate-scroll delay-[400ms]">
+             <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-8 sm:mb-12 text-center gu-text border-b-4 border-primary/50 pb-2 inline-block">વેલ પ્રસ્થાન: શુભ મુહૂર્ત</h2>
+             
+             <!-- Highlight Block for Vel Prasthan - UPDATED WITH BOTH NAMES -->
+             <div class="p-6 sm:p-8 regal-card border-l-8 border-accent major-highlight text-center">
+                 <i data-lucide="flag" class="w-8 h-8 sm:w-10 sm:h-10 text-secondary mx-auto mb-4"></i>
+                 <h3 class="text-2xl sm:text-3xl font-bold text-secondary mb-2 gu-text">વરરાજાઓની વેલનું પ્રસ્થાન</h3>
+                 <p class="text-lg sm:text-xl font-semibold text-primary gu-text">તા. ૦૬-૦૨-૨૦૨૬, સવારે ૫:૦૦ કલાકે</p>
+                 <p class="text-sm text-gray-700 mt-2 gu-text italic">
+                    (કુંવરશ્રી ચિ. યોગેન્દ્રસિંહજી તથા કુંવરશ્રી ચિ. સિદ્ધરાજસિંહજીના શુભ લગ્ન પ્રસંગ અર્થે કન્યા પક્ષ તરફ પ્રસ્થાન)
+                 </p>
+             </div>
+        </div>
+    </section>
+
+    <!-- 5. Schedule / Events Section (Now the 5th section) -->
+    <section id="schedule" class="section bg-white p-4">
+        <div class="max-w-6xl mx-auto animate-scroll delay-[450ms]">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-8 sm:mb-12 text-center gu-text border-b-4 border-primary/50 pb-2 inline-block">માંગલિક પ્રસંગો</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-10">
+                
+                <!-- 1. Yogendrasinhji Schedule - UPDATED: કુંવરશ્રી ચિ. -->
+                <div class="p-6 bg-cream rounded-xl regal-card border-l-8 border-secondary animate-scroll delay-[500ms]">
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 sm:mb-6 gu-text border-b-2 border-primary/50 pb-2">કુંવરશ્રી ચિ. યોગેન્દ્રસિંહજી (લગ્ન તા. ૦૭-૦૨-૨૦૨૬)</h3>
+                    <div class="space-y-3 sm:space-y-4 text-gray-700 text-sm sm:text-base">
+                        
+                        <!-- Event 1 -->
+                        <div class="event-card-bg flex flex-wrap items-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3 text-secondary shrink-0"></i>
+                            <span class="event-detail-label gu-text">પાટે બેસાડવાનું:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">મહા વદ-૫, તા. ૦૬-૦૨-૨૦૨૬, સવારે શુભ ચોઘડીએ</span>
+                        </div>
+
+                        <!-- Event 2: Mandap Muhurat -->
+                        <div class="event-card-bg flex flex-wrap items-center">
+                            <i data-lucide="building-2" class="w-5 h-5 mr-3 text-secondary shrink-0"></i>
+                            <span class="event-detail-label gu-text font-bold text-primary">મંડપ મુહૂર્ત:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">તા. ૦૭-૦૨-૨૦૨૬, સવારે ૮:૦૦ કલાકે</span> 
+                        </div>
+
+                        <!-- Event 3: Same Chadvu -->
+                         <div class="event-card-bg flex flex-wrap items-center">
+                            <i data-lucide="horse" class="w-5 h-5 mr-3 text-primary shrink-0"></i>
+                            <span class="event-detail-label gu-text font-bold text-primary">સામે ચડવાનું મુહૂર્ત:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">તા. ૦૭-૦૨-૨૦૨૬, બપોરે ૩:૪૫ કલાકે</span>
+                        </div>
+                        
+                        <!-- Event 4: Hasta Melap (Handshake Icon) -->
+                        <div class="event-card-bg flex flex-wrap items-center">
+                            <i data-lucide="handshake" class="w-5 h-5 mr-3 text-secondary shrink-0"></i>
+                            <span class="event-detail-label gu-text font-bold text-primary">હસ્ત મેળાપ:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">તા. ૦૭-૦૨-૨૦૨૬, સાંજે ૫:૦૦ કલાકે</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MAJOR EVENT: DANDIYARAS -->
+                <div class="p-6 bg-cream rounded-xl regal-card border-l-8 border-primary animate-scroll delay-[550ms] flex flex-col justify-center">
+                    <div class="text-center major-highlight border-secondary/70 p-4 rounded-xl">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-secondary gu-text mb-2">રાત્રીનો દાંડિયારાસ અને ભોજન</h3>
+                        <p class="text-lg sm:text-xl font-semibold text-primary gu-text">તા. ૦૭-૦૨-૨૦૨૬, રાત્રે ૯:૦૦ કલાકે</p>
+                        <p class="text-sm text-gray-700 mt-2 gu-text italic">(રાસની રમઝટ અને સ્વાદિષ્ટ ભોજન સાથે રાત્રીના શુભારંભમાં પધારો.)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. MAJOR EVENT: BHOJAN SAMARAMBH - Full width block -->
+            <div class="bg-secondary/10 p-6 sm:p-8 rounded-xl my-8 text-center major-highlight animate-scroll delay-[600ms]">
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-secondary gu-text mb-2">ભોજન સમારંભ</h3>
+                <p class="text-lg sm:text-xl font-semibold text-primary gu-text">તા. ૦૮-૦૨-૨૦૨૬, બપોરે ૧૧:૩૦ કલાકે</p>
+                <p class="text-sm text-gray-700 mt-2 gu-text italic">(આપ સર્વે જ્ઞાતિજનો તથા સ્નેહીજનોને પધારવા ભાવભર્યું આમંત્રણ છે)</p>
+            </div>
+
+            <!-- Siddhrajshinhji Schedule and Himdriba Kanyadan in a 2-column grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mt-10">
+                <!-- 4. Siddhrajshinhji Schedule - UPDATED: કુંવરશ્રી ચિ. -->
+                 <div class="p-6 bg-cream rounded-xl regal-card border-l-8 border-primary animate-scroll delay-[650ms]">
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-4 sm:mb-6 gu-text border-b-2 border-primary/50 pb-2">કુંવરશ્રી ચિ. સિધ્ધરાજસિંહજી (લગ્ન તા. ૦૮-૦૨-૨૦૨૬)</h3>
+                    <div class="space-y-3 sm:space-y-4 text-gray-700 text-sm sm:text-base">
+                        
+                        <!-- Event 1: Mandap Muhurat (Building-2 Icon) -->
+                        <div class="event-card-bg flex flex-wrap items-center">
+                             <i data-lucide="building-2" class="w-5 h-5 mr-3 text-secondary shrink-0"></i>
+                            <span class="event-detail-label gu-text">મંડપ મુહૂર્ત:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">મહા વદ-૭, તા. ૦૮-૦૨-૨૦૨૬, સવારે ૬:૦૦ કલાકે</span>
+                        </div>
+
+                        <!-- Event 2: Same Chadvu (Horse Icon) -->
+                        <div class="event-card-bg flex flex-wrap items-center bg-primary/10 border-l-5 border-primary">
+                            <i data-lucide="horse" class="w-5 h-5 mr-3 text-primary shrink-0"></i>
+                            <span class="event-detail-label gu-text font-bold text-secondary">સામે ચડવાનું મુહૂર્ત:</span>
+                            <span class="event-detail-value gu-text ml-2 font-extrabold text-secondary">તા. ૦૮-૦૨-૨૦૨૬, સાંજે ૭:૦૦ કલાકે</span>
+                        </div>
+
+                        <!-- Event 3: Hasta Melap (Link Icon) -->
+                        <div class="event-card-bg flex flex-wrap items-center">
+                            <i data-lucide="link" class="w-5 h-5 mr-3 text-secondary shrink-0"></i>
+                            <span class="event-detail-label gu-text">હસ્ત મેળાપ:</span>
+                            <span class="event-detail-value gu-text ml-2 font-medium">તા. ૦૮-૦૨-૨૦૨૬, રાત્રે શુભ ચોઘડીએ</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 5. MAJOR EVENT: HIMADRIBA KANYADAN -->
+                <div class="p-6 regal-card border-l-8 border-accent/70 animate-scroll delay-[700ms] flex flex-col justify-center">
+                    <div class="text-center major-highlight p-4 rounded-xl">
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-secondary gu-text mb-2">હિમાદ્રિબાનું કન્યાદાન</h3>
+                        <p class="text-lg sm:text-xl font-semibold text-primary gu-text">તા. ૦૮-૦૨-૨૦૨૬, શુભ ચોઘડીએ</p>
+                        <p class="text-sm text-gray-700 mt-2 gu-text italic">(વડીલોના આશીર્વાદ અને દિવ્યતાથી શોભતો આ મંગલ પ્રસંગ)</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- 6. Family and Relatives Section (Now the 6th section) -->
+    <section id="family" class="section bg-cream p-4">
+        <div class="max-w-6xl mx-auto animate-scroll delay-[750ms]">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-8 sm:mb-12 text-center gu-text border-b-4 border-primary/50 pb-2 inline-block">પરિવારજનો અને સ્નેહીજનો</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 text-center animate-scroll delay-[800ms]">
+                
+                <!-- Guests -->
+                <div class="p-6 regal-card border-b-4 border-secondary/70">
+                    <h3 class="text-xl font-bold text-primary mb-3 gu-text border-b pb-1">મોંઘેરા મહેમાન</h3>
+                    <ul class="text-gray-700 space-y-1 text-sm pt-2">
+                        <li class="font-medium">શ્રી મહેન્દ્રસિંહજી જીવુભા ઝાલા (અડવાળ)</li>
+                        <li class="font-medium">શ્રી ભુપેન્દ્રસિંહજી જયવંતસિંહજી ગોહિલ (સાંઢખાખરા)</li>
+                        <li class="font-medium">શ્રી રાજદિપસિંહજી મહેન્દ્રસિંહજી ઝાલા (ભાણુભા) (અડવાળ)</li>
+                        <li class="font-medium">શ્રી વિશ્વજીતસિંહજી ભુપેન્દ્રસિંહજી ગોહિલ (ભાણુભા) (સાંઢખાખરા)</li>
+                    </ul>
+                </div>
+                
+                <!-- Sons-in-law -->
+                <div class="p-6 regal-card border-b-4 border-secondary/70">
+                    <h3 class="text-xl font-bold text-primary mb-3 gu-text border-b pb-1">જમાઈશ્રી</h3>
+                    <ul class="text-gray-700 space-y-1 text-sm pt-2">
+                        <li class="font-medium">શ્રી મહાવીરસિંહજી સુખદેવસિંહજી પરમાર (ટિકર)</li>
+                        <li class="font-medium">શ્રી રાજદિપસિંહજી જગદિશસિંહજી સરવૈયા (દેદરડા)</li>
+                    </ul>
+                </div>
+                
+                <!-- Maternal Family -->
+                <div class="p-6 regal-card border-b-4 border-secondary/70">
+                    <h3 class="text-xl font-bold text-primary mb-3 gu-text border-b pb-1">મોસાળ પક્ષ</h3>
+                    <ul class="text-gray-700 space-y-1 text-sm pt-2">
+                        <li class="font-medium">શ્રી બટુકસિંહજી ગુમાનસિંહજી ગોહિલ (નાનાબાપુ) (ખારડી)</li>
+                        <li class="font-medium">શ્રી વિરમદેવસિંહજી બટુકસિંહજી ગોહિલ (મામા)</li>
+                        <li class="font-medium">શ્રી રામદેવસિંહજી બટુકસિંહજી ગોહિલ (મામા)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mitho Tahuko - Remains in Family Section (Moved to the end of the content) -->
+            <div class="mitho-tahuko animate-scroll mt-8 delay-[850ms]">
+                <h4 class="text-2xl sm:text-3xl font-bold text-secondary mb-3 gu-text inline-block border-b-2 border-primary/50 pb-1">મીઠો ટહુકો</h4>
+                <p class="text-lg sm:text-xl text-gray-800 my-4 gu-text font-semibold">
+                    વયમાં અમે છીએ નાના પણ પ્રસંગે ચુપ રહીએ શાના? <br/> અમારા ઘરના પ્રસંગે પધારજો ભુલી બધા બહાના... <br/> અમારા કાકા તથા મામાના લગ્નમાં જરૂર પધારજો...
+                </p>
+                <p class="text-xs sm:text-base mt-4 text-gray-600 font-medium gu-text">
+                    - મિતરાજસિંહજી, દિવ્યાંશીબા, ધૈર્યવિજયસિંહજી, ધ્વનીકાબા, જન્મેજયસિંહજી, માનવીરસિંહજી, હિમાદ્રિબા, હર્ષવર્ધનસિંહજી, અગસ્ત્યવરસિંહજી, શિવાદિત્યસિંહજી, મિતાંશીબા, રૂદ્રદત્તસિંહજી, જયદત્તસિંહજી.
+                </p>
+            </div>
+
+
+            <p class="text-xs sm:text-sm mt-8 text-center text-gray-500 gu-text italic">
+                (સમગ્ર રાજપૂત પરિવાર, મિત્રવર્ગ, હિતાર્થીવર્ગ, ધંધાર્થીવર્ગ, જ્ઞાતિજનો તરફથી)
+            </p>
+        </div>
+    </section>
+
+    <!-- 7. Contact and Location Section -->
+    <section id="contact" class="section hero-bg min-h-[50vh] flex items-center justify-center text-center p-4">
+        <div class="max-w-3xl w-full p-6 sm:p-8 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl animate-scroll border-4 border-primary delay-[900ms]">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-6 gu-text border-b-4 border-primary/50 pb-2 inline-block">શુભ સ્થળ અને સંપર્ક</h2>
+            
+            <!-- Location Details -->
+            <div class="mb-6">
+                <i data-lucide="map-pin" class="w-7 h-7 sm:w-8 sm:h-8 text-secondary mx-auto mb-2 animate-bounce"></i>
+                <h3 class="text-xl font-bold text-primary gu-text">નિમંત્રણ સ્થળ:</h3>
+                <p class="text-base sm:text-lg text-gray-700 gu-text font-medium">
+                    મુ. કાલમેઘડા, વાયા: ખરેડી, તા. કાલાવડ, જી. જામનગર, પીન-૩૬૦૫૪૦
+                </p>
+                <!-- Google Maps Link using Pincode 360540 as query -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Kalmeghada,+Kalawad,+Jamnagar,+Gujarat+360540" target="_blank" class="inline-block mt-4 text-sm font-semibold text-white bg-secondary hover:bg-accent py-2 px-4 rounded-full transition duration-300 transform hover:scale-105 active:scale-95 shadow-lg gu-text">
+                    નકશા પર જુઓ
+                </a>
+            </div>
+            
+            <div class="separator mx-auto w-1/3"></div>
+            
+            <!-- Contact Details (UPDATED WITH WHATSAPP LINKS & CENTER ALIGNMENT) -->
+            <div class="mb-4">
+                <i data-lucide="phone" class="w-7 h-7 sm:w-8 sm:h-8 text-secondary mx-auto mb-2 animate-pulse"></i>
+                <h3 class="text-xl font-bold text-primary gu-text">સંપર્ક (આયોજક):</h3>
+                <p class="text-base sm:text-lg font-semibold mb-6 text-gray-800 gu-text">શ્રી હારિતસિંહજી નટવરસિંહજી જાડેજા</p>
+                
+                <!-- Contact List with Phone and WhatsApp Icons - Using contact-center-align class -->
+                <div class="contact-center-align text-sm sm:text-base font-medium text-secondary">
+                    
+                    <!-- Row 1 -->
+                    <div class="contact-row">
+                        <!-- Contact 1 -->
+                        <div class="flex items-center space-x-2">
+                            <a href="tel:+919725375834" class="contact-link flex items-center">
+                                ૯૭૨૫૩ ૭૫૮૩૪
+                                <i data-lucide="phone-call" class="w-4 h-4 ml-1 text-secondary"></i>
+                            </a> 
+                            <!-- WhatsApp Link -->
+                            <a href="https://wa.me/919725375834" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp whatsapp-icon text-lg"></i>
+                            </a>
+                        </div>
+
+                        <!-- Contact 2 -->
+                        <div class="flex items-center space-x-2">
+                            <a href="tel:+919714141157" class="contact-link flex items-center">
+                                ૯૭૧૪૧ ૪૧૧૫૭
+                                <i data-lucide="phone-call" class="w-4 h-4 ml-1 text-secondary"></i>
+                            </a>
+                            <!-- WhatsApp Link -->
+                            <a href="https://wa.me/919714141157" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp whatsapp-icon text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="contact-row">
+                        <!-- Contact 3 -->
+                        <div class="flex items-center space-x-2">
+                            <a href="tel:+919099467754" class="contact-link flex items-center">
+                                ૯૦૯૯૪ ૬૭૭૫૪
+                                <i data-lucide="phone-call" class="w-4 h-4 ml-1 text-secondary"></i>
+                            </a>
+                            <!-- WhatsApp Link -->
+                            <a href="https://wa.me/919099467754" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp whatsapp-icon text-lg"></i>
+                            </a>
+                        </div>
+
+                        <!-- Contact 4 -->
+                        <div class="flex items-center space-x-2">
+                            <a href="tel:+916351057070" class="contact-link flex items-center">
+                                ૬૩૫૧૦ ૫૭૦૭૦
+                                <i data-lucide="phone-call" class="w-4 h-4 ml-1 text-secondary"></i>
+                            </a>
+                            <!-- WhatsApp Link -->
+                            <a href="https://wa.me/916351057070" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp whatsapp-icon text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-gray-500 mt-3 gu-text italic">
+                    (ફોન આઇકન પર ક્લિક કરવાથી ડાયલ પેડ અને WhatsApp આઇકન પર ક્લિક કરવાથી મેસેજ બોક્સ ખુલશે.)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer class="bg-secondary text-cream py-4 text-center">
+        <p class="text-xs sm:text-sm gu-text font-semibold">શુભેચ્છા - જાડેજા પરિવાર, કાલમેઘડા</p>
+    </footer>
+
+    <!-- JavaScript for Functionality -->
+    <script>
+        // Set the primary wedding date (Yogendrasinhji HASTA MELAP) for countdown.
+        // Feb 7, 2026 at 5:00 PM (Month is 0-indexed: 1=Feb)
+        const WEDDING_DATE = new Date(2026, 1, 7, 17, 0, 0).getTime();
+
+        /**
+         * Parses a URL query parameter.
+         */
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            // Decode URI component to handle spaces (%20) and Gujarati characters correctly
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        /**
+         * Inserts the dynamic recipient name if available in the URL query.
+         */
+        function insertDynamicRecipientName() {
+            const recipientName = getUrlParameter('name');
+            const nameContainer = document.getElementById('dynamic-recipient-name');
+
+            if (recipientName && nameContainer) {
+                // Display the name prominently with a greeting
+                nameContainer.innerHTML = `
+                    <p class="text-2xl sm:text-3xl font-extrabold text-accent mb-4 gu-text tracking-wide">${recipientName}</p>
+                    <p class="text-lg text-secondary font-semibold mb-6 gu-text border-b border-primary/30 pb-3">આપને સહપરિવાર ભાવભર્યું નિમંત્રણ છે.</p>
+                `;
+            } else {
+                 // Fallback to maintain compact layout if no name provided.
+            }
+        }
+
+        /**
+         * Updates the countdown timer display.
+         */
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = WEDDING_DATE - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const container = document.getElementById('countdown-container');
+
+            if (distance < 0) {
+                clearInterval(interval);
+                container.innerHTML = `<p class="text-lg sm:text-xl text-secondary font-bold gu-text">માંગલિક પ્રસંગો શરૂ થઈ ચૂક્યા છે!</p>`;
+                return;
+            }
+
+            // Function to convert Latin numeral string to Gujarati numeral string
+            function toGujaratiNumerals(num) {
+                const gujaratiMap = {
+                    '0': '૦', '1': '૧', '2': '૨', '3': '૩', '4': '૪',
+                    '5': '૫', '6': '૬', '7': '૭', '8': '૮', '9': '૯'
+                };
+                return String(num).replace(/[0-9]/g, digit => gujaratiMap[digit]);
+            }
+
+            // Update the display with calculated values in Gujarati script
+            container.innerHTML = `
+                <div class="countdown-item">
+                    <div class="countdown-value text-2xl sm:text-3xl font-extrabold">${toGujaratiNumerals(days.toString().padStart(2, '0'))}</div>
+                    <div class="countdown-label text-xs sm:text-sm font-medium">દિવસ</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value text-2xl sm:text-3xl font-extrabold">${toGujaratiNumerals(hours.toString().padStart(2, '0'))}</div>
+                    <div class="countdown-label text-xs sm:text-sm font-medium">કલાક</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value text-2xl sm:text-3xl font-extrabold">${toGujaratiNumerals(minutes.toString().padStart(2, '0'))}</div>
+                    <div class="countdown-label text-xs sm:text-sm font-medium">મિનિટ</div>
+                </div>
+                <div class="countdown-item hidden sm:flex">
+                    <div class="countdown-value text-2xl sm:text-3xl font-extrabold">${toGujaratiNumerals(seconds.toString().padStart(2, '0'))}</div>
+                    <div class="countdown-label text-xs sm:text-sm font-medium">સેકન્ડ</div>
+                </div>
+            `;
+        }
+
+        // Start the countdown timer
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call to display immediately
+
+
+        /**
+         * Generates and animates falling petals.
+         */
+        function createPetals() {
+            const container = document.getElementById('petal-container');
+            const numberOfPetals = 20; // Number of petals for a subtle background effect
+
+            for (let i = 0; i < numberOfPetals; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal petal-animate';
+
+                // Randomize starting X position (0% to 100% of viewport width)
+                const startX = Math.random() * 100;
+                petal.style.left = `${startX}vw`;
+                
+                // Randomize size (8px to 14px)
+                const size = 8 + Math.random() * 6;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                
+                // Randomize duration (5s to 15s) for speed
+                const duration = 5 + Math.random() * 10;
+                petal.style.setProperty('--duration', `${duration}s`);
+                
+                // Randomize delay (0s to -15s) to start the animation mid-way/staggered
+                const delay = -Math.random() * 15;
+                petal.style.setProperty('--delay', `${delay}s`);
+
+                // Initial rotation for varied start
+                const initialRotation = Math.random() * 360;
+                petal.style.transform = `rotate(${initialRotation}deg)`;
+
+                // Random opacity
+                petal.style.opacity = 0.3 + Math.random() * 0.4; // 0.3 to 0.7
+                
+                container.appendChild(petal);
+            }
+        }
+
+
+        /**
+         * Toggles the mobile menu visibility.
+         */
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        /**
+         * Intersection Observer for Scroll Reveal Animation.
+         */
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Initialize Lucide Icons
+            lucide.createIcons();
+            
+            // 2. Insert Dynamic Name (New functionality)
+            insertDynamicRecipientName();
+
+            // 3. Start Petal Animation
+            createPetals();
+
+            // 4. Setup Scroll Observer 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Use setTimeout to create a staggered effect based on delay attribute
+                        const delay = entry.target.dataset.delay ? parseInt(entry.target.dataset.delay) : 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            // Stop observing after it becomes visible
+                            observer.unobserve(entry.target); 
+                        }, delay);
+                    }
+                });
+            }, { 
+                rootMargin: '0px', 
+                threshold: 0.1 
+            });
+
+            // Add delay data attribute and observe elements
+            document.querySelectorAll('.animate-scroll').forEach((element, index) => {
+                // Ensure a staggered delay for all scroll-animated elements
+                if (!element.dataset.delay) {
+                    element.dataset.delay = index * 50; // 50ms staggering for faster load
+                }
+                observer.observe(element);
+            });
+
+            // Navigation smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu after clicking
+                    if (window.innerWidth < 768) {
+                        const menu = document.getElementById('mobile-menu');
+                        if (!menu.classList.contains('hidden')) {
+                            toggleMenu();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -984,7 +984,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const TRACK_URL = `${TRACKER_BASE}/track`;
 
   // Decide website name to track (current hostname works well)
-  const websiteName = window.location.hostname || "unknown-host";
+  const websiteName = window.location.hostname || "unknown-host" +"family";
 
   // Optional: set a shared secret header to prevent abuse (match server-side check if you add one)
   const TRACKER_SECRET = "your-shared-secret"; // keep it safe; remove if not using

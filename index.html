@@ -769,6 +769,7 @@
                 <p class="text-xs text-gray-500 mt-3 gu-text italic">
                     (ફોન આઇકન પર ક્લિક કરવાથી ડાયલ પેડ અને WhatsApp આઇકન પર ક્લિક કરવાથી મેસેજ બોક્સ ખુલશે.)
                 </p>
+                <div id="count"></div>
             </div>
         </div>
     </section>
@@ -1014,6 +1015,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await res.json();
     console.log("Tracked:", data.website, "count:", data.count);
+      document.getelementById("count").value=data.count;
 
     // Optional: update UI
     // document.getElementById("hitCount").textContent = `Hits: ${data.count}`;

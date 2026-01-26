@@ -39,6 +39,26 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
+
+
+/* Hide the Google Translate toolbar */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+/* Hide the "Powered by Google" text if desired */
+.goog-logo-link {
+    display: none !important;
+}
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+
+
+        
         /* Mobile-First Section Padding Optimization */
         .section {
             padding: 3rem 1rem; /* Reduced vertical padding for mobile, consistent horizontal padding */
@@ -979,7 +999,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'gu', 
-    includedLanguages: 'en,gu,hi', // Restricts it to just these three
+    includedLanguages:'en,gu,hi,sa,ta,te,bn,mr', // Restricts it to just these three
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       
   }, 'google_translate_element');

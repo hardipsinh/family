@@ -986,5 +986,30 @@ function googleTranslateElementInit() {
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
+
+<script>
+  function applyUrlLanguage() {
+    // 1. Get the 'lang' parameter from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang'); // will get 'gu' or 'hi'
+
+    if (lang) {
+      // 2. Format must be: /source_lang/target_lang (e.g., /en/gu)
+      const langValue = '/en/' + lang;
+      
+      // 3. Set the Google Translate cookie
+      document.cookie = "googtrans=" + langValue + "; path=/";
+      document.cookie = "googtrans=" + langValue + "; domain=" + document.domain + "; path=/";
+      
+      // 4. Reload the page (only if the translation hasn't applied yet)
+      // Note: Google's script usually picks up the cookie on page load.
+    }
+  }
+
+  // Run the function when the script loads
+  applyUrlLanguage();
+</script>
+
+    
 </body>
 </html>
